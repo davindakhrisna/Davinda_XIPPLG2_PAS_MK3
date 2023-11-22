@@ -78,10 +78,10 @@ var Game = {
             100
         );
  
-        // Change the canvas color;
+        // Ubah warna Canvas
         Pong.context.fillStyle = '#ffffff';
  
-        // Draw the end game menu text ('Game Over' and 'Winner')
+        // Membuat Game Over
         Pong.context.fillText(text,
             Pong.canvas.width / 2,
             Pong.canvas.height / 2 + 15
@@ -94,7 +94,7 @@ var Game = {
     },
  
     menu: function () {
-        // Draw all the Pong objects in their current state
+        // Menggambar semua objek di semua state
         Pong.draw();
  
         // Change the canvas font size and color
@@ -109,7 +109,7 @@ var Game = {
             100
         );
  
-        // Change the canvas color;
+        // Mengubah warna Canvas
         this.context.fillStyle = '#ffffff';
  
         // Draw the 'press any key to begin' text
@@ -119,7 +119,7 @@ var Game = {
         );
     },
  
-    // Update all objects (move the player, ai, ball, increment the score, etc.)
+    // Update semua objects (player, ai, bola, increment score, dll..)
     update: function () {
         if (!this.over) {
             // If the ball collides with the bound limits - correct the x and y coords.
@@ -132,8 +132,8 @@ var Game = {
             if (this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
             else if (this.player.move === DIRECTION.DOWN) this.player.y += this.player.speed;
  
-            // On new serve (start of each turn) move the ball to the correct side
-            // and randomize the direction to add some challenge.
+            // Dalam setiap turn, mengubah arahan bola ke arahan yang tepat
+            // dan merandomisasi gerakan AI
             if (Pong._turnDelayIsOver.call(this) && this.turn) {
                 this.ball.moveX = this.turn === this.player ? DIRECTION.LEFT : DIRECTION.RIGHT;
                 this.ball.moveY = [DIRECTION.UP, DIRECTION.DOWN][Math.round(Math.random())];
@@ -161,11 +161,11 @@ var Game = {
                 else this.ai.y += this.ai.speed / 4;
             }
  
-            // Handle ai (AI) wall collision
+            // Handle ai (AI) benturan dinding 
             if (this.ai.y >= this.canvas.height - this.ai.height) this.ai.y = this.canvas.height - this.ai.height;
             else if (this.ai.y <= 0) this.ai.y = 0;
  
-            // Handle Player-Ball collisions
+            // Handle Player-Ball benturan
             if (this.ball.x - this.ball.width <= this.player.x && this.ball.x >= this.player.x - this.player.width) {
                 if (this.ball.y <= this.player.y + this.player.height && this.ball.y + this.ball.height >= this.player.y) {
                     this.ball.x = (this.player.x + this.ball.width);
@@ -174,7 +174,7 @@ var Game = {
                 }
             }
  
-            // Handle ai-ball collision
+            // Handle ai-ball benturan
             if (this.ball.x - this.ball.width <= this.ai.x && this.ball.x >= this.ai.x - this.ai.width) {
                 if (this.ball.y <= this.ai.y + this.ai.height && this.ball.y + this.ball.height >= this.ai.y) {
                     this.ball.x = (this.ai.x - this.ball.width);
@@ -184,8 +184,8 @@ var Game = {
             }
         }
  
-        // Handle the end of round transition
-        // Check to see if the player won the round.
+        // Handle transisi end dari setiap round
+        // Cek jika player memenangkan round
         if (this.player.score === rounds[this.round]) {
             // Check to see if there are any more rounds/levels left and display the victory screen if
             // there are not.
@@ -193,7 +193,7 @@ var Game = {
                 this.over = true;
                 setTimeout(function () { Pong.endGameMenu('Winner!'); }, 1000);
             } else {
-                // If there is another round, reset all the values and increment the round number.
+                // Jika ada round lain, reset semua value dan increment round number.
                 this.color = this._generateRoundColor();
                 this.player.score = this.ai.score = 0;
                 this.player.speed += 0.5;
@@ -203,14 +203,14 @@ var Game = {
  
             }
         }
-        // Check to see if the ai/AI has won the round.
+        // Cek apakah AI memenangkan round.
         else if (this.ai.score === rounds[this.round]) {
             this.over = true;
             setTimeout(function () { Pong.endGameMenu('Game Over!'); }, 1000);
         }
     },
  
-    // Draw the objects to the canvas element
+    // Menggambar object ke Canvas
     draw: function () {
         // Clear Canvas
         this.context.clearRect(
