@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Ping-Pong</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            text-align: center;
+            background-color: ghostwhite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: fixed;
+            width: 100%;
+        }
+        .footer {
+            margin: 10px;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            position: absolute;
+            bottom: 0px;
+            text-align: left;
+            padding-left: 50px;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ping Pong</h1>
+    <canvas></canvas>
+    <p>Kendalikan bagian kiri dengan wasd atau arrow keys</p>
+    <div class="footer">Copyright © 2023 - Davinda Khrisna Adyatma</div>
+    <script src="./script.js"></script>
+</body>
+</html>
